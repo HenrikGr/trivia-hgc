@@ -1,32 +1,40 @@
-var path = require('path');
-var webpack = require('webpack');
-
+/*
+ * Description:
+ *
+ * Author:  Henrik
+ * File:
+ * Version: 0.0.1
+ *
+ * Created on 2016-07-07
+ */
 module.exports = {
-    entry: './js/app.js',
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'app.bundle.js'
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react']
-                }
-            },
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react']
-                }
-            }
-        ]
-    },
-    stats: {
-        colors: true
-    },
-    devtool: 'source-map'
+  entry: ['whatwg-fetch', __dirname + '/client/src/main.js'],
+  output: {
+    path: __dirname + '/client/dist/js',
+    filename: 'app.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react', 'stage-0']
+        }
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react', 'stage-0']
+        }
+      }
+    ]
+  },
+  stats: {
+    colors: true
+  },
+  devtool: 'source-map'
 };
